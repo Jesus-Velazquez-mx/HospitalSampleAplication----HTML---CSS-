@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ver doctores</title>
+  <link rel="stylesheet" href="ver_doctores.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Administracion</h7>
+          <hr class="linea_menu">
+          <a href="./ver_medicos_consultorios.html">Administrar Sucursales</a>
+          <a href="./ver_doctores.html">Administrar Doctor</a>
+          <a href="./ver_asistentes.html">Administrar Asistente</a>
+          <h7>Altas en sistema</h7>
+          <hr class="linea_menu">
+          <a href="./alta_sucursales.html">Alta Sucursales</a>
+          <a href="./alta_consultorios.html">Alta Consultorios</a>
+          <a href="./alta_doctores.html">Alta Doctor</a>
+          <a href="./alta_asistentes.html">Alta Asistente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1> Administra tus Doctores</h1>
+    </header>
+
+    <main class="main">
+      <h2>Doctores</h2>
+
+      <!-- Mantenemos un card de ejemplo que usaremos como plantilla -->
+          <div class="card template" style="display: none;">
+        <div class="card-header">
+          Doctor <span class="codigo">xxxxxx</span>
+          <button class="options-btn" aria-label="Opciones">•••</button>
+        </div>
+        <div class="card-body">
+          <div class="avatar"></div>
+          <div class="info">
+            <strong class="nombre">Nombre del Doctor</strong>
+            <p class="telefono">Teléfono: xxxxxxx</p>
+            <p class="correo">Correo: xxxxxxx</p>
+            <p class="especialidad">Especialidad: xxxxxxx</p> <!-- Añade esta línea -->
+            <p class="horario">Horario: xxxxxxx</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor donde se agregarán las cards dinámicamente -->
+      <div id="doctores-container">
+        <!-- Los datos se cargarán aquí manteniendo el mismo diseño -->
+      </div>
+
+    </main>
+  </div>
+  
+  <script src="doctores_a_detalles.js"></script>
+  <script src="../Modules/Menu.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async function() {
+      try {
+        const response = await fetch('http://localhost:3000/api/doctores');
+        const doctores = await response.json();
+        const container = document.getElementById('doctores-container');
+        const template = document.querySelector('.card.template');
+        
+        // Función mejorada para extraer SOLO la hora de formatos ISO (1970-01-01T08:00:00) o HH:MM:SS
+        const getHoraFormateada = (timeValue) => {
+          if (!timeValue) return '--:--';
+          
+          // Si es un string con formato ISO (1970-01-01T08:00:00)
+          if (typeof timeValue === 'string' && timeValue.includes('T')) {
+            const timePart = timeValue.split('T')[1]; // Obtiene la parte después de la T
+            const [hours, minutes] = timePart.split(':');
+            return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`;
+          }
+          
+          // Si es un objeto (viene de SQL Server)
+          if (typeof timeValue === 'object' && timeValue.hours !== undefined) {
+            return `${String(timeValue.hours).padStart(2, '0')}:${String(timeValue.minutes).padStart(2, '0')}`;
+          }
+          
+          // Si es un string simple (HH:MM:SS o HH:MM)
+          if (typeof timeValue === 'string') {
+            const parts = timeValue.split(':');
+            if (parts.length >= 2) {
+              return `${parts[0].padStart(2, '0')}:${parts[1].padStart(2, '0')}`;
+            }
+          }
+          
+          return '--:--';
+        };
+
+        doctores.forEach(doctor => {
+          const card = template.cloneNode(true);
+          card.style.display = '';
+          
+          card.querySelector('.codigo').textContent = doctor.codigo_medico;
+          card.querySelector('.avatar').textContent = doctor.primer_nombre.charAt(0);
+          card.querySelector('.nombre').textContent = `${doctor.primer_nombre} ${doctor.apellido_paterno} ${doctor.apellido_materno || ''}`;
+          card.querySelector('.telefono').textContent = `Teléfono: ${doctor.telefono || 'No disponible'}`;
+          card.querySelector('.correo').textContent = `Correo: ${doctor.correo_electronico || 'No disponible'}`;
+          card.querySelector('.especialidad').textContent = doctor.especialidad || 'No disponible';
+
+          
+          // Extraer y mostrar solo las horas
+          const horaInicio = getHoraFormateada(doctor.horario_inicio);
+          const horaFin = getHoraFormateada(doctor.horario_fin);
+          card.querySelector('.horario').textContent = `${horaInicio} - ${horaFin}`;
+          
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Error al cargar doctores:', error);
+        container.innerHTML = '<p style="color:red">Error al cargar los datos</p>';
+      }
+    });
+</script>
+</body>
+</html>

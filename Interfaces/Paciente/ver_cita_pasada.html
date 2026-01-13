@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles de Cita Pasada</title>
+  <link rel="stylesheet" href="ver_cita.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./paciente_agendar.html">Nueva cita</a>
+          <a href="./paciente_citas_pasadas.html">Historial de citas</a>
+          <h7>Historial Medico</h7>
+          <hr class="linea_menu">
+          <a href="./expediente_paciente.html">Expediente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+      <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+      <h1>Detalles de Cita Pasada</h1>
+    </header>
+
+    <main class="main">
+      <div class="card">
+        <div class="card-header">
+          Cita <span id="cita-id"></span>
+          <span id="cita-estado" class="estado"></span>
+        </div>
+        <div class="card-body">
+          <div class="info">
+            <p><strong>Fecha:</strong> <span id="cita-fecha"></span></p>
+            <p><strong>Hora:</strong> <span id="cita-hora"></span></p>
+            <p><strong>Paciente:</strong> <span id="cita-paciente"></span></p>
+            <p><strong>Médico:</strong> <span id="cita-medico"></span></p>
+            <p><strong>Consultorio:</strong> <span id="cita-consultorio"></span></p>
+            <p><strong>Sucursal:</strong> <span id="cita-sucursal"></span></p>
+            <p><strong>Estado:</strong> <span id="cita-estado-text"></span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="btn-volver" class="btn-volver">Volver</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../Modules/Menu.js"></script>
+  <script src="ver_cita_pasada.js"></script>
+</body>
+</html>

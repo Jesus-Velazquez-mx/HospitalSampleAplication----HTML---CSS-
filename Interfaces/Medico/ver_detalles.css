@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.app {
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 30px 20px 50px;
+  border-bottom-left-radius: 40px;
+}
+
+.menu-dots {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.menu-dots span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.main {
+  padding: 20px;
+}
+
+.main h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background-color: #d8e3e3;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #1a3f4f;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.options {
+  font-size: 18px;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #1a3f4f;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.info p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  color: #555;
+}

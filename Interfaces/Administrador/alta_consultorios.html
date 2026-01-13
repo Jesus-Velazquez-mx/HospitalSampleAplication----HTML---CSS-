@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="../Modules/Menu.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="alta_consultorios.css" />
+</head>
+
+<body>
+    <div class="app">
+
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Administracion</h7>
+          <hr class="linea_menu">
+          <a href="./ver_medicos_consultorios.html">Administrar Sucursales</a>
+          <a href="./ver_doctores.html">Administrar Doctor</a>
+          <a href="./ver_asistentes.html">Administrar Asistente</a>
+          <h7>Altas en sistema</h7>
+          <hr class="linea_menu">
+          <a href="./alta_sucursales.html">Alta Sucursales</a>
+          <a href="./alta_consultorios.html">Alta Consultorios</a>
+          <a href="./alta_doctores.html">Alta Doctor</a>
+          <a href="./alta_asistentes.html">Alta Asistente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+        <header class="header">
+            <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+            <h1> Alta Consultorios</h1>
+        </header>
+
+        <form>
+            <h7>Datos del consultorio</h7>
+            <hr class="linea_seccion">
+            <div class="input-group"><i class="fa-solid fa-hospital"></i><input type="text" placeholder="Nombre" required></div>                 
+            <div class="input-group"><i class="fa-solid fa-hospital"></i><input type="text" placeholder="Nombre de la sucursal" required></div>
+
+            <div class="checkbox">
+                <input type="checkbox" id="terms" required>
+                <label for="terms">Acepto los <a href="#">Términos y Privacidad</a></label>
+            </div>
+
+            <button type="submit" class="register-btn">Registrar</button>
+        </form>
+    </div>
+
+    <script src="../Modules/Menu.js"></script>
+    <script src="../../BaseDeDatos/alta_consultorios.js"></script>
+
+</body>
+
+</html>

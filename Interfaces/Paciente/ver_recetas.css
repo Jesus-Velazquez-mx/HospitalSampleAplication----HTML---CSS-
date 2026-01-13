@@ -1,0 +1,96 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.app {
+  position: relative;
+  background: white;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+
+/* Header */
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 45px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+  position: relative;
+}
+
+
+.header h1 {
+ margin-top: 30px;
+  font-size: 28px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 12px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+.content {
+  padding: 1rem;
+}
+
+.content h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.card {
+  background-color: #e5f0f0;
+  border-radius: 10px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #153a52;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.card-body p {
+  margin: 0.3rem 0;
+}
+
+.pdf-button {
+  display: block;
+  margin: 0.8rem auto 1rem auto;
+  padding: 0.5rem 1rem;
+  background-color: #76aabf;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  width: 60%;
+}
+
+.pdf-button:hover {
+  background-color: #5c96a9;
+}

@@ -1,0 +1,191 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+}
+
+.app {
+  position: relative;
+  background: white;
+  max-width: 400px;
+  min-height: 950px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+
+/* Header */
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 45px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+  position: relative;
+}
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+select {
+  width: 200px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.card {
+  background-color: #d8e3e3;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-top: 35px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #1a3f4f;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #1a3f4f;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.options-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-body {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+
+#Zona {
+  text-align: right;
+  padding: 20px 20px 20px;
+}
+
+/* Calendario */
+.calendar-container {
+  background: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#selected-date-input {
+  width: 90%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.calendar-controls select {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.day-names, .days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day-names div {
+  font-weight: bold;
+}
+
+.days-grid div {
+  padding: 10px;
+  background: #eaeaea;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.days-grid div:hover {
+  background: #d0d0d0;
+}
+
+.selected {
+  background: #28a745 !important;
+  color: white;
+  font-weight: bold;
+}
+
+#verderojo{
+  padding: 10px 20px 30px;
+
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  #Zona {
+    float: none;
+    text-align: center;
+    padding: 20px;
+  }
+
+  select {
+    width: 90%;
+  }
+}

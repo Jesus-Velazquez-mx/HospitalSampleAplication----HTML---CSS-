@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Receta Médica</title>
+  <link rel="stylesheet" href="ver_receta.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    .receta-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: white;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .receta-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #5f8591;
+      padding-bottom: 20px;
+    }
+    .receta-header h1 {
+      color: #1a3f4f;
+      margin-bottom: 5px;
+    }
+    .receta-header p {
+      color: #555;
+      margin: 5px 0;
+    }
+    .receta-body {
+      margin-bottom: 30px;
+    }
+    .receta-section {
+      margin-bottom: 20px;
+    }
+    .receta-section h3 {
+      color: #1a3f4f;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
+    .receta-section p {
+      margin-left: 15px;
+      white-space: pre-line;
+    }
+    .medico-info {
+      text-align: right;
+      margin-top: 50px;
+    }
+    .medico-info p {
+      margin: 5px 0;
+    }
+    .medico-firma {
+      margin-top: 30px;
+      border-top: 1px solid #333;
+      width: 200px;
+      margin-left: auto;
+      text-align: center;
+      padding-top: 10px;
+    }
+    .receta-actions {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .btn-imprimir {
+      padding: 10px 20px;
+      background-color: #5f8591;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn-volver {
+      padding: 10px 20px;
+      background-color: #ccc;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    .medicamento-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="receta-container">
+    <div class="receta-header">
+      <h1>Receta Médica</h1>
+      <p><strong>Número de receta:</strong> <span id="receta-id"></span></p>
+      <p><strong>Fecha de emisión:</strong> <span id="receta-fecha"></span></p>
+    </div>
+
+    <div class="receta-body">
+      <div class="receta-section">
+        <h3>Medicamentos</h3>
+        <div id="receta-medicamentos">
+          <!-- Los medicamentos se cargarán aquí -->
+        </div>
+      </div>
+
+      <div class="receta-section">
+        <h3>Indicaciones</h3>
+        <p id="receta-indicaciones">No especificado</p>
+      </div>
+
+      <div class="receta-section">
+        <h3>Consulta relacionada</h3>
+        <p id="receta-consulta">No especificado</p>
+      </div>
+
+      <div class="medico-info">
+        <p><strong>Médico tratante:</strong> <span id="receta-medico"></span></p>
+        <p><strong>Especialidad:</strong> <span id="receta-especialidad"></span></p>
+        <div class="medico-firma">
+          <p>Firma</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="receta-actions">
+      <button id="btn-volver" class="btn-volver">Volver</button>
+      <button id="btn-imprimir" class="btn-imprimir">Imprimir Receta</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener datos de la receta desde sessionStorage
+        const recetaData = JSON.parse(sessionStorage.getItem('recetaDetalle'));
+        
+        if (!recetaData) {
+            alert('No se encontraron datos de la receta');
+            window.location.href = 'receta_paciente.html';
+            return;
+        }
+
+        // Mostrar datos en la página
+        document.getElementById('receta-id').textContent = recetaData.id;
+        document.getElementById('receta-fecha').textContent = formatDate(recetaData.fecha_emision);
+        document.getElementById('receta-medico').textContent = recetaData.medico;
+        document.getElementById('receta-especialidad').textContent = recetaData.especialidad || 'No especificada';
+        document.getElementById('receta-indicaciones').textContent = recetaData.detalles || 'No especificado';
+        document.getElementById('receta-consulta').textContent = recetaData.consulta_relacionada || 'No especificado';
+
+        // Mostrar medicamentos
+        const medicamentosContainer = document.getElementById('receta-medicamentos');
+        medicamentosContainer.innerHTML = ''; // Limpiar contenedor primero
+
+        if (recetaData.medicamentos && recetaData.medicamentos.length > 0) {
+            recetaData.medicamentos.forEach(med => {
+                const medItem = document.createElement('div');
+                medItem.className = 'medicamento-item';
+                medItem.innerHTML = `
+                    <div>
+                        <strong>${med.nombre || 'Medicamento no especificado'}</strong><br>
+                        <span>${med.dosis || 'Dosis no especificada'}</span>
+                    </div>
+                    <div>
+                        ${med.duracion || 'Duración no especificada'}<br>
+                        ${med.frecuencia || 'Frecuencia no especificada'}
+                    </div>
+                `;
+                medicamentosContainer.appendChild(medItem);
+            });
+        } else {
+            medicamentosContainer.innerHTML = '<p>No se especificaron medicamentos</p>';
+        }
+
+        // Configurar botones
+        document.getElementById('btn-volver').addEventListener('click', () => {
+            window.location.href = 'receta_paciente.html';
+        });
+
+        document.getElementById('btn-imprimir').addEventListener('click', () => {
+            window.print();
+        });
+    });
+
+    function formatDate(dateString) {
+        if (!dateString) return '--/--/----';
+        const date = new Date(dateString);
+        if (isNaN(date.getTime())) return '--/--/----';
+        return date.toLocaleDateString('es-MX', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        });
+    }
+</script>
+</body>
+</html>

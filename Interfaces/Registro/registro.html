@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Cuenta</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="registro.css" />
+</head>
+<body>
+
+  <div class="container">
+    <header class="header">
+      <input type="button" value="..." class="menu-dots-btn">
+      <h1> Registrate</h1>
+    </header>
+
+    <form>
+      <div class="input-group"><i class="fa fa-user"></i><input type="text" placeholder="Nombre" required></div>
+      <div class="input-group"><i class="fa fa-user"></i><input type="text" placeholder="Apellidos" required></div>
+      <div class="input-group"><i class="fa-solid fa-venus-mars"></i><input type="text" placeholder="M/H" required></div>
+      <div class="input-group"><i class="fa-solid fa-id-card"></i><input type="text" placeholder="Documento de indentidad" required></div>
+      <div class="input-group"><i class="fa-solid fa-cake-candles"></i><input type="date" placeholder="Fecha de nacimiento" required></div>
+      
+      <div class="input-group"><i class="fa-solid fa-house"></i><input type="text" placeholder="Calle" required></div>
+      <div class="input-group"><i class="fa-solid fa-house"></i><input type="text" placeholder="Colonia" required></div>
+      <div class="input-group"><i class="fa-solid fa-house"></i><input type="text" placeholder="Numero ex." required></div>
+      <div class="input-group"><i class="fa fa-envelope"></i><input type="email" placeholder="Correo" required></div>
+      <div class="input-group"><i class="fa fa-phone"></i><input type="tel" placeholder="Telefono" required></div>
+      <div class="input-group"><i class="fa fa-lock"></i><input type="password" placeholder="Contraseña" required></div>
+      <div class="input-group"><i class="fa fa-lock"></i><input type="password" placeholder="Confirmar contraseña" required></div>
+
+      <div class="checkbox">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">Acepto los <a href="#">Términos y Privacidad</a></label>
+      </div>
+
+      <button type="submit" class="register-btn">Registrarse</button>
+
+      <div class="login-link">
+        ¿Ya tienes una cuenta? <a href="../InicioSesion/inicio.html">Inicia sesión</a>
+      </div>
+    </form>
+  </div>
+
+  <script src="registro.js"></script>
+</body>
+</html>

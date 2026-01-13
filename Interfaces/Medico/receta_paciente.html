@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recetas Emitidas</title>
+  <link rel="stylesheet" href="expediente_paciente.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <a href="./paciente_citas.html">Citas</a>
+          <a href="./ver_pacientes.html">Pacientes</a>
+          <a href="./receta_paciente.html">Recetas</a>
+          <a href="./ver_medicos_consultorios.html">Consultorios</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1>Recetas Emitidas</h1>
+    </header>
+
+    <main class="main">
+      <h2>Historial de Recetas</h2>
+
+      <!-- Plantilla para las recetas -->
+      <div class="expediente-card template" style="display: none;">
+        <div class="expediente-header">
+          Receta <span class="codigo-receta"></span>
+          <span class="fecha-receta"></span>
+        </div>
+        <div class="expediente-body">
+          <div class="expediente-info">
+            <p><strong>Médico:</strong> <span class="nombre-medico"></span></p>
+            <p><strong>Fecha de emisión:</strong> <span class="fecha-emision"></span></p>
+            <p><strong>Consulta relacionada:</strong> <span class="consulta-relacionada"></span></p>
+          </div>
+          <div class="expediente-actions">
+            <button class="btn-ver">Ver receta</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor para las recetas -->
+      <div id="recetas-container">
+        <!-- Las recetas se cargarán aquí dinámicamente -->
+      </div>
+    </main>
+  </div>
+  
+  <script src="../Modules/Menu.js"></script>
+  <script src="cargarRecetas.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar Doctor</title>
+  <link rel="stylesheet" href="eliminar_doctores.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h2>Eliminar Doctor</h2>
+      <p class="doctor-id">Doctor xxxxxxxxx</p>
+    </header>
+    <div class="card">
+      <div class="card-header">
+        Doctor <span id="doctor-codigo">xxxxxx</span>
+        <button class="options-btn" aria-label="Opciones">•••</button>
+      </div>
+      <div class="card-body">
+        <div class="avatar">D</div>
+        <div class="info">
+          <strong>Nombre del Doctor</strong>
+          <p>Datos del Doctor:</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="alert">
+      <div class="icon">⚠️</div>
+      <div>
+        <strong>AVISO:</strong><br />
+        El doctor será borrado permanentemente y no podrá ser recuperado después de esta acción.
+      </div>
+    </section>
+
+    <form id="delete-doctor-form">
+      <h3>Datos de confirmación</h3>
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" required />
+
+      <label for="reason">Razón de eliminación</label>
+      <input type="text" id="reason" placeholder="Motivo" required />
+
+      <div class="terms">
+        <input type="checkbox" id="terms" />
+        <label for="terms">Acepto Términos y Condiciones</label>
+      </div>
+
+      <button type="submit" id="deleteDoctorBtn" disabled>Eliminar</button>
+      <button type="button" class="secondary">Regresar</button>
+    </form>
+  </div>
+
+  <script src="eliminar_doctores.js"></script>
+  <script src="doctores_a_detalles.js"></script>
+</body>
+</html>

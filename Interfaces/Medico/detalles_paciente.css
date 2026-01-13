@@ -1,0 +1,142 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.app {
+  max-width: 400px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 20px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.add-btn{
+  background: none;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header p {
+  margin: 5px 0 0;
+  font-size: 16px;
+}
+
+
+/* Título del paciente */
+
+.main {
+  padding: 20px;
+}
+
+.main h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  padding: 20px;
+}
+
+.patient-name {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.card {
+  background-color: #d8e3e3;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #1a3f4f;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+  padding: 16px;
+}
+
+/* Perfil */
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-info {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Texto del paciente */
+.info p {
+  font-size: 13px;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 40px;
+}
+
+.btn-agregar {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-agregar:hover {
+  background-color: #45a049;
+}

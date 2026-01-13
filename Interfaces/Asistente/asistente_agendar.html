@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agendar Cita</title>
+  <link rel="stylesheet" href="../Modules/Menu.css">
+  <link rel="stylesheet" href="asistente_agendar.css">
+  
+</head>
+<body>
+<div class="app">
+  <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./mostrar_citas.html">Citas Agendadas</a>
+          <a href="./asistente_agendar.html">Agendar Cita</a>
+          <h7>Pacientes</h7>
+          <hr class="linea_menu">
+          <a href="./ver_pacientes.html">Listado de Pacientes</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+          <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+          <h1> Agendar cita</h1>
+    </header>
+
+  <div class="container">
+
+    <div class="alert">
+      <div class="alert-icon">⚠️</div>
+      <div>
+        <strong>AVISO:</strong><br />
+        Para agendar, se requiere el anticipo del 50% del costo total de la consulta.<br /><br />
+        El reembolso es válido en cancelaciones antes de 48 hrs previas a la cita.<br /><br />
+        El resto del pago se realizará durante la consulta de manera presencial.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="especialidad">Especialidad</label>
+      <select id="especialidad">
+        <option disabled selected>Seleccione especialidad</option>
+        <option>Cardiología</option>
+        <option>Pediatría</option>
+        <option>Dermatología</option>
+        <option>Ortopedia</option>
+        <option>Neurología</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="doctor">Doctor</label>
+      <select id="doctor">
+        <option disabled selected>Seleccione doctor</option>
+        <option>Dr. Juan Pérez</option>
+        <option>Dra. María García</option>
+        <option>Dr. Carlos López</option>
+        <option>Dra. Ana Martínez</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="zona">Zona</label>
+      <select id="zona">
+        <option disabled selected>Seleccione zona</option>
+        <option>Zona Norte</option>
+        <option>Zona Sur</option>
+      </select>
+    </div>
+
+    <!-- Calendario Interactivo -->
+        <div class="calendar-container">
+        <div class="calendar-controls">
+            <select id="month-select"></select>
+            <select id="year-select"></select>
+        </div>
+
+        <input type="text" id="selected-date-input" readonly placeholder="Selecciona una fecha" />
+
+        <div class="calendar">
+            <div class="day-names">
+            <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div>
+            </div>
+            <div id="calendar-days" class="days-grid"></div>
+        </div>
+        </div>
+        <br> 
+        <div id="verderojo">
+            <span>🟢 Fecha disponible</span>
+            <span>🔴 Fecha ocupada</span>
+        </div>
+
+    <div class="form-group">
+      <label for="hora">Hora</label>
+      <select id="hora">
+        <option disabled selected>Seleccione hora</option>
+        <option>09:00 AM</option>
+        <option>10:00 AM</option>
+        <option>11:00 AM</option>
+        <option>12:00 PM</option>
+      </select>
+    </div>
+
+    <div class="form-group monto">
+      <label for="montoTotal">Monto total</label>
+      <input type="text" id="montoTotal" placeholder="$0.00" readonly class="bold" >
+    </div>
+
+    <div class="form-group deposit-container">
+      <div class="anticipo">
+        <label for="Anticipo">Anticipo</label>
+        <input type="text" id="anticipo" placeholder="$0.00" readonly class="bold " >
+      </div>
+      
+    </div>
+
+    <div class="payment-methods">
+  <button class="payment-button" onclick="mostrarOpciones(event)">
+    Selecciona un metodo de pago
+  </button>
+  
+  <div class="opciones-pago hidden" id="opcionesPago">
+    <div class="metodo">
+      <label>
+        <input type="radio" name="metodoPago" onclick="mostrarMetodo('tarjeta')">
+        Tarjeta de Débito/Crédito
+      </label>
+      <div id="tarjeta" class="hidden">
+        <input class="campo" type="text" placeholder="Número de Tarjeta">
+        <input class="campo" type="text" placeholder="Nombre del titular">
+        <input class="campo" type="text" placeholder="Fecha de vencimiento (MM/AA)">
+        <input class="campo" type="text" placeholder="CVV">
+      </div>
+    </div>
+
+    <div class="metodo">
+      <label>
+        <input type="radio" name="metodoPago" onclick="mostrarMetodo('transferencia')">
+        Transferencia Bancaria
+      </label>
+      <div id="transferencia" class="hidden">
+        <div class="info-transferencia">
+          <p><strong>Titular:</strong> Clínica Médica MedFlow S.A. de C.V.</p>
+          <p><strong>Número de cuenta:</strong> 1234 5678 9012 3456</p>
+          <p><strong>CLABE:</strong> 0123 4567 8901 2345 67</p>
+          <p><strong>Banco:</strong> Banco xxxx</p>
+        </div>
+        <p class="nota">Nota: El pago deberá ser efectuado en un plazo de 24 hrs. La cita se confirmará una vez validado el pago.</p>
+      </div>
+    </div>
+  </div>
+ </div>
+
+    <div class="form-group">
+      <button class="continue-button" onclick="validarFormulario()">
+        Continuar
+      </button>
+    </div>
+  </div>
+
+  <script src="../Modules/Menu.js"></script>
+  <script src="../Administrador/Calendarscript.js"></script>
+  <script src="../Paciente/paciente_agendar.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,138 @@
+  * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    
+
+    .header {
+  background-color: #5f8591;
+  color: white;
+  padding: 20px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+}
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+    .close {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+    }
+
+    form {
+      margin-top: 20px;
+    }
+
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      background-color: #eaf1f2;
+      border-radius: 20px;
+      padding: 10px 15px;
+      border: 2px solid #bdd3d6;
+    }
+
+    .input-group i {
+      margin-right: 10px;
+      color: #555;
+    }
+
+    .input-group input {
+      border: none;
+      background: none;
+      outline: none;
+      width: 100%;
+      font-size: 1em;
+    }
+
+    .checkbox {
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      font-size: 0.9em;
+    }
+
+    .checkbox input {
+      margin-right: 8px;
+    }
+
+    .checkbox a {
+      color: #094d8e;
+      text-decoration: none;
+    }
+
+    .register-btn {
+      width: 100%;
+      background-color: #1e3f49;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .login-link a {
+      color: #094d8e;
+      text-decoration: none;
+    }
+
+    /* Estilo general del contenedor */
+    .input-group input[type="date"] {
+      border: none;
+      background: none;
+      outline: none;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      font-size: 1em;
+      padding: 6px 0;
+      color: #555;
+      appearance: none; /* Oculta el estilo nativo en algunos navegadores */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    /* Ajuste para navegadores basados en WebKit (Chrome, Safari) */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(50%);
+      cursor: pointer;
+    }
+
+    /* Para Firefox (opcional, ya que aplica estilo por defecto) */
+    input[type="date"]::-moz-focus-inner {
+      border: 0;
+    }

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalles Doctor</title>
+  <link rel="stylesheet" href="../Modules/Menu.css" />
+  <link rel="stylesheet" href="detallesDoctor.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Administracion</h7>
+          <hr class="linea_menu">
+          <a href="./ver_medicos_consultorios.html">Administrar Sucursales</a>
+          <a href="./ver_doctores.html">Administrar Doctor</a>
+          <a href="./ver_asistentes.html">Administrar Asistente</a>
+          <h7>Altas en sistema</h7>
+          <hr class="linea_menu">
+          <a href="./alta_sucursales.html">Alta Sucursales</a>
+          <a href="./alta_consultorios.html">Alta Consultorios</a>
+          <a href="./alta_doctores.html">Alta Doctor</a>
+          <a href="./alta_asistentes.html">Alta Asistente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+      <h1>Administra Doctores</h1>
+    </header>
+
+    <div class="card">
+      <div class="card-header">
+        Doctor <span id="codigo-doctor">xxxxxx</span>
+        <button class="options-btn" aria-label="Eliminar" id="delete-btn">🗑️</button>
+      </div>
+      <div class="card-body">
+        <div class="avatar" id="doctor-avatar">A</div>
+        <div class="info">
+          <strong id="nombre-doctor">Nombre del Doctor</strong>
+          <p id="telefono-doctor">Teléfono: xxxxxxxxxxxxx</p>
+          <p id="correo-doctor">Correo: xxxxxxxxxxxxx</p>
+          <p id="especialidad">Especialidad: xxxxxxxxxxxxx</p>
+          <p id="horario-doctor">Horario: xxxxxxxxxxxxx</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de consultorios disponibles -->
+    <div class="section-container">
+      <h3>Consultorios Disponibles</h3>
+      <div id="consultorios-container">
+        <!-- Los consultorios se cargarán aquí dinámicamente -->
+      </div>
+    </div>
+
+    <!-- Formulario para asignar horario -->
+    <div class="section-container">
+      <h3>Asignar Horario</h3>
+      <form id="asignar-horario-form">
+        <div class="form-group">
+          <label for="consultorio-select">Consultorio:</label>
+          <select id="consultorio-select" required>
+            <option value="">Seleccione un consultorio</option>
+            <!-- Opciones se llenarán dinámicamente -->
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="fecha">Fecha (AAAA-MM-DD):</label>
+          <input type="text" id="fecha" required 
+                 placeholder="AAAA-MM-DD" 
+                 pattern="\d{4}-\d{2}-\d{2}">
+        </div>
+        
+        <div class="form-group">
+          <label for="hora-inicio">Hora Inicio (HH:MM:SS):</label>
+          <input type="text" id="hora-inicio" required 
+                 placeholder="HH:MM:SS" 
+                 pattern="\d{2}:\d{2}:\d{2}">
+        </div>
+        
+        <div class="form-group">
+          <label for="hora-fin">Hora Fin (HH:MM:SS):</label>
+          <input type="text" id="hora-fin" required 
+                 placeholder="HH:MM:SS" 
+                 pattern="\d{2}:\d{2}:\d{2}">
+        </div>
+        
+        <button type="submit" class="btn-asignar">Asignar Horario</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        // Obtener el código del doctor de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const codigoDoctor = urlParams.get('codigo');
+        
+        if (!codigoDoctor) {
+          throw new Error('No se especificó un doctor');
+        }
+
+        // Obtener datos del sessionStorage o de la API
+        const doctorData = JSON.parse(sessionStorage.getItem('selectedDoctor')) || {};
+        
+        // Mostrar datos en la interfaz
+        if (doctorData.codigo) {
+          document.getElementById('codigo-doctor').textContent = doctorData.codigo;
+          document.getElementById('nombre-doctor').textContent = doctorData.nombre;
+          document.getElementById('telefono-doctor').textContent = doctorData.telefono;
+          document.getElementById('correo-doctor').textContent = doctorData.correo;
+          document.getElementById('especialidad').textContent = doctorData.especialidad;
+          document.getElementById('horario-doctor').textContent = doctorData.horario;
+          
+          // Avatar con inicial del nombre
+          const inicial = doctorData.nombre?.charAt(0) || 'A';
+          document.getElementById('doctor-avatar').textContent = inicial;
+        } else {
+          // Si no hay datos en sessionStorage, cargar desde la API
+          cargarDoctorDesdeAPI(codigoDoctor);
+        }
+
+        // Cargar consultorios disponibles
+        cargarConsultoriosDisponibles(codigoDoctor);
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error al cargar los datos del doctor');
+      }
+
+      async function cargarDoctorDesdeAPI(codigo) {
+        try {
+          const response = await fetch(`http://localhost:3000/api/doctores`);
+          if (!response.ok) throw new Error('Doctor no encontrado');
+          
+          const doctor = await response.json();
+          
+          // Mostrar datos en la interfaz
+          document.getElementById('codigo-doctor').textContent = doctor.codigo_medico;
+          document.getElementById('nombre-doctor').textContent = 
+            `${doctor.primer_nombre} ${doctor.apellido_paterno} ${doctor.apellido_materno || ''}`;
+          document.getElementById('telefono-doctor').textContent = `Teléfono: ${doctor.telefono || 'No disponible'}`;
+          document.getElementById('correo-doctor').textContent = `Correo: ${doctor.correo_electronico || 'No disponible'}`;
+          
+          // Formatear horario
+          const formatTime = (time) => {
+            if (!time) return '--:--';
+            if (typeof time === 'object') {
+              return `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}`;
+            }
+            if (typeof time === 'string' && time.includes('T')) {
+              return time.split('T')[1].substring(0, 5);
+            }
+            return time;
+          };
+          document.getElementById('horario-doctor').textContent = 
+            `Horario: ${formatTime(doctor.horario_inicio)} - ${formatTime(doctor.horario_fin)}`;
+          
+          // Avatar con inicial del nombre
+          const inicial = doctor.primer_nombre?.charAt(0) || 'A';
+          document.getElementById('doctor-avatar').textContent = inicial;
+        } catch (error) {
+          console.error('Error al cargar desde API:', error);
+          alert('Error al cargar los datos del doctor');
+        }
+      }
+
+      async function cargarConsultoriosDisponibles(codigoDoctor) {
+        try {
+          const response = await fetch(`http://localhost:3000/api/consultorios-disponibles/${codigoDoctor}`);
+          if (!response.ok) throw new Error('Error al obtener consultorios');
+          
+          const sucursales = await response.json();
+          const container = document.getElementById('consultorios-container');
+          const select = document.getElementById('consultorio-select');
+          
+          // Limpiar contenedores
+          container.innerHTML = '';
+          select.innerHTML = '<option value="">Seleccione un consultorio</option>';
+          
+          if (Object.keys(sucursales).length === 0) {
+            container.innerHTML = '<p>No hay consultorios disponibles</p>';
+            return;
+          }
+          
+          // Mostrar lista de consultorios agrupados por sucursal
+          for (const [codigoSucursal, sucursal] of Object.entries(sucursales)) {
+            const h4 = document.createElement('h4');
+            h4.textContent = sucursal.nombre_sucursal;
+            container.appendChild(h4);
+            
+            const ul = document.createElement('ul');
+            sucursal.consultorios.forEach(consultorio => {
+              const li = document.createElement('li');
+              li.textContent = `${consultorio.codigo} - ${consultorio.nombre}`;
+              ul.appendChild(li);
+              
+              // Agregar opción al select
+              const option = document.createElement('option');
+              option.value = consultorio.codigo;
+              option.textContent = `${consultorio.codigo} - ${consultorio.nombre} (${sucursal.nombre_sucursal})`;
+              select.appendChild(option);
+            });
+            container.appendChild(ul);
+          }
+        } catch (error) {
+          console.error('Error al cargar consultorios:', error);
+          document.getElementById('consultorios-container').innerHTML = 
+            '<p class="error">Error al cargar consultorios disponibles</p>';
+        }
+      }
+
+      // Manejar envío del formulario
+      document.getElementById('asignar-horario-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Validar formato de fecha y hora
+        const fecha = document.getElementById('fecha').value;
+        const horaInicio = document.getElementById('hora-inicio').value;
+        const horaFin = document.getElementById('hora-fin').value;
+        
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
+          alert('Formato de fecha incorrecto. Use AAAA-MM-DD');
+          return;
+        }
+        
+        if (!/^\d{2}:\d{2}:\d{2}$/.test(horaInicio) || !/^\d{2}:\d{2}:\d{2}$/.test(horaFin)) {
+          alert('Formato de hora incorrecto. Use HH:MM:SS');
+          return;
+        }
+        
+        const codigoConsultorio = document.getElementById('consultorio-select').value;
+        
+        try {
+          const codigoDoctor = new URLSearchParams(window.location.search).get('codigo');
+          
+          const response = await fetch('http://localhost:3000/api/asignar-horario', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              codigoDoctor,
+              codigoConsultorio,
+              fecha,
+              horaInicio,
+              horaFin
+            })
+          });
+          
+          if (!response.ok) throw new Error('Error al asignar horario');
+          
+          const result = await response.json();
+          alert('Horario asignado correctamente');
+          // Recargar datos si es necesario
+          cargarConsultoriosDisponibles(codigoDoctor);
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error al asignar horario: ' + error.message);
+        }
+      });
+    });
+  </script>
+  
+  <script>
+    document.getElementById('delete-btn').addEventListener('click', function() {
+      // Guardar datos actuales del doctor
+      const doctorData = {
+        codigo: document.getElementById('codigo-doctor').textContent,
+        nombre: document.getElementById('nombre-doctor').textContent,
+        telefono: document.getElementById('telefono-doctor').textContent,
+        correo: document.getElementById('correo-doctor').textContent,
+        especialidad: document.getElementById('especialidad').textContent,
+        horario: document.getElementById('horario-doctor').textContent
+      };
+      sessionStorage.setItem('doctorToDelete', JSON.stringify(doctorData));
+      
+      // Redirigir directamente
+      window.location.href = 'eliminar_doctores.html';
+    });
+  </script>
+  <script src="../Modules/Menu.js"></script>
+</body>
+</html>

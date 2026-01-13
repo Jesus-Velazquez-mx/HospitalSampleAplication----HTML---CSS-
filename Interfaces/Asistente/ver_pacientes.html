@@ -1,0 +1,90 @@
+<!-- ver_pacientes.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ver Pacientes</title>
+  <link rel="stylesheet" href="ver_doctores.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <a href="./paciente_citas.html">Citas</a>
+          <a href="./ver_pacientes.html">Pacientes</a>
+          <a href="./receta_paciente.html">Recetas</a>
+          <a href="./SucursalMedico.html">Consultorios</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+      <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+      <h1>Mis pacientes</h1>
+    </header>
+
+    <main class="main">
+      <h2>Pacientes</h2>
+
+      <div class="card template" style="display: none;">
+        <div class="card-header">
+          Paciente <span class="codigo">xxxxxx</span>
+        </div>
+        <div class="card-body">
+          <div class="avatar"></div>
+          <div class="info">
+            <strong class="nombre">Nombre del Paciente</strong>
+            <p class="telefono">Teléfono: xxxxxxx</p>
+            <p class="correo">Correo: xxxxxxx</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="pacientes-container"></div>
+    </main>
+  </div>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      const container = document.getElementById('pacientes-container');
+      const template = document.querySelector('.card.template');
+
+      try {
+        const userData = JSON.parse(sessionStorage.getItem('userData'));
+        const codigoAsistente = userData?.codigo_persona;
+
+        if (!codigoAsistente) {
+          throw new Error('No se encontró el código del asistente');
+        }
+
+        const response = await fetch(`http://localhost:3000/api/pacientes/asistente/${codigoAsistente}`);
+        const pacientes = await response.json();
+
+        pacientes.forEach(p => {
+          const card = template.cloneNode(true);
+          card.style.display = '';
+          card.classList.remove('template');
+
+          card.querySelector('.codigo').textContent = p.codigo_paciente;
+          card.querySelector('.avatar').textContent = p.nombre.charAt(0);
+          card.querySelector('.nombre').textContent = p.nombre;
+          card.querySelector('.telefono').textContent = `Teléfono: ${p.telefono}`;
+          card.querySelector('.correo').textContent = `Correo: ${p.correo_electronico}`;
+
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error al cargar pacientes:', err);
+        container.innerHTML = '<p style="color:red">Error al cargar los pacientes</p>';
+      }
+    });
+  </script>
+  <script src="../Modules/Menu.js"></script>
+</body>
+</html>

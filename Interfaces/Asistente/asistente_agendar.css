@@ -1,0 +1,317 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
+}
+
+.app {
+  position: relative;
+  background: white;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+ overflow: auto;
+}
+
+/* Header */
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 60px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+  position: relative;
+}
+
+.container {
+  padding: 1rem;
+}
+
+
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.alert {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-size: 0.95rem;
+}
+
+.alert-icon {
+  font-size: 1.5rem;
+}
+
+.form-group {
+  margin-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #3a3a3a;
+}
+
+select, input[type="text"] {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 20px;
+  border: 2px solid #a3bcc4;
+  background-color: #f4f9fa;
+  font-size: 1rem;
+  color: #555;
+  appearance: none;
+}
+
+.monto{
+  width: 340px;
+}
+
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23666' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 0.6rem;
+}
+
+/* Calendario */
+.calendar-container {
+  background: white;
+  padding: 20px;
+  text-align: center;
+}
+
+#selected-date-input {
+  width: 90%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fafafa;
+}
+
+.calendar-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.calendar-controls select {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.day-names, .days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.day-names div {
+  font-weight: bold;
+}
+
+.days-grid div {
+  padding: 10px;
+  background: #eaeaea;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.days-grid div:hover {
+  background: #d0d0d0;
+}
+
+.selected {
+  background: #28a745 !important;
+  color: white;
+  font-weight: bold;
+}
+/**/
+.payment-methods {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.payment-button {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #a3bcc4;
+  border-radius: 20px;
+  background-color: #f4f9fa;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.payment-options {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: white;
+  border: 2px solid #a3bcc4;
+  border-radius: 15px;
+  margin-top: 0.5rem;
+  z-index: 2;
+}
+
+.payment-options.show {
+  display: block;
+}
+
+.payment-option {
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.payment-option:hover {
+  background-color: #f4f9fa;
+}
+
+.continue-button {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 25px;
+  background-color: #6a9aa3;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.deposit-container {
+  border: 2px solid #d1e0e0;
+  border-radius: 15px;
+  padding: 1rem;
+  background-color: #f8f8f8;
+}
+
+.hidden {
+  display: none;
+}
+
+.anticipo{
+  width: 305px;
+}
+
+
+/* Estilos para métodos de pago */
+.payment-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #16394C;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.opciones-pago {
+  position: absolute;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+.metodo {
+  border: 2px solid #8BAEB3;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background-color: #f4f9fa;
+}
+
+.metodo label {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #2e4e5e;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.metodo input[type="radio"] {
+  margin-right: 1rem;
+  width: 18px;
+  height: 18px;
+  accent-color: #16394C;
+}
+
+.campo {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 2px solid #8BAEB3;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #3a3a3a;
+  font-size: 0.9rem;
+}
+
+.info-transferencia {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.info-transferencia p {
+  margin: 0.5rem 0;
+  color: #3a3a3a;
+}
+
+.nota {
+  color: #F44336;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ffeeba;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Añade box-sizing para consistencia */
+.calendar-grid div {
+  box-sizing: border-box;
+}
+
+/* Estilo de resaltado */
+.selected {
+  box-shadow: 0 0 0 2px #16394C;
+}
+
+.bold {
+  font-weight: bold;
+}

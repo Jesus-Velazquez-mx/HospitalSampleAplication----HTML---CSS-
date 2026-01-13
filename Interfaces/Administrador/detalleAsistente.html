@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalles Asistente</title>
+  <link rel="stylesheet" href="../Modules/Menu.css" />
+  <link rel="stylesheet" href="detalleAsistente.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Administracion</h7>
+          <hr class="linea_menu">
+          <a href="./AdministrarSucursales.html">Administrar Sucursales</a>
+          <a href="./ver_doctores.html">Administrar Doctor</a>
+          <a href="./ver_asistentes.html">Administrar Asistente</a>
+          <h7>Altas en sistema</h7>
+          <hr class="linea_menu">
+          <a href="./alta_sucursales.html">Alta Sucursales</a>
+          <a href="./alta_consultorios.html">Alta Consultorios</a>
+          <a href="./alta_doctores.html">Alta Doctor</a>
+          <a href="./alta_asistentes.html">Alta Asistente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+      <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+      <h1>Administra Asistentes</h1>
+    </header>
+
+    <div class="card">
+      <div class="card-header">
+        Asistente <span id="codigo-asistente">xxxxxx</span>
+        <button class="options-btn" aria-label="Eliminar" id="delete-btn">🗑️</button>
+      </div>
+      <div class="card-body">
+        <div class="avatar" id="asistente-avatar">A</div>
+        <div class="info">
+          <strong id="nombre-asistente">Nombre del Asistente</strong>
+          <p id="telefono-asistente">Teléfono: xxxxxxxxxxxxx</p>
+          <p id="correo-asistente">Correo: xxxxxxxxxxxxx</p>
+          <p id="horario-asistente">Horario: xxxxxxxxxxxxx</p>
+        </div>
+      </div>
+    </div>
+
+  <script src="Calendarscript.js"></script>
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      // Obtener el código del asistente de la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const codigoAsistente = urlParams.get('codigo');
+      
+      if (!codigoAsistente) {
+        throw new Error('No se especificó un asistente');
+      }
+
+      // Obtener datos del sessionStorage o de la API
+      const asistenteData = JSON.parse(sessionStorage.getItem('selectedAsistente')) || {};
+      
+      // Mostrar datos en la interfaz
+      if (asistenteData.codigo) {
+        document.getElementById('codigo-asistente').textContent = asistenteData.codigo;
+        document.getElementById('nombre-asistente').textContent = asistenteData.nombre;
+        document.getElementById('telefono-asistente').textContent = asistenteData.telefono;
+        document.getElementById('correo-asistente').textContent = asistenteData.correo;
+        document.getElementById('horario-asistente').textContent = asistenteData.horario;
+        
+        // Avatar con inicial del nombre
+        const inicial = asistenteData.nombre?.charAt(0) || 'A';
+        document.getElementById('asistente-avatar').textContent = inicial;
+      } else {
+        // Si no hay datos en sessionStorage, cargar desde la API
+        cargarAsistenteDesdeAPI(codigoAsistente);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error al cargar los datos del asistente');
+    }
+
+    async function cargarAsistenteDesdeAPI(codigo) {
+      try {
+        const response = await fetch(`http://localhost:3000/api/asistentes`);
+        if (!response.ok) throw new Error('Asistente no encontrado');
+        
+        const asistente = await response.json();
+        
+        // Mostrar datos en la interfaz
+        document.getElementById('codigo-asistente').textContent = asistente.codigo_asistente;
+        document.getElementById('nombre-asistente').textContent = 
+          `${asistente.primer_nombre} ${asistente.apellido_paterno} ${asistente.apellido_materno || ''}`;
+        document.getElementById('telefono-asistente').textContent = `Teléfono: ${asistente.telefono || 'No disponible'}`;
+        document.getElementById('correo-asistente').textContent = `Correo: ${asistente.correo_electronico || 'No disponible'}`;
+        
+        // Formatear horario
+        const formatTime = (time) => {
+          if (!time) return '--:--';
+          if (typeof time === 'object') {
+            return `${String(time.hours).padStart(2, '0')}:${String(time.minutes).padStart(2, '0')}`;
+          }
+          if (typeof time === 'string' && time.includes('T')) {
+            return time.split('T')[1].substring(0, 5);
+          }
+          return time;
+        };
+        document.getElementById('horario-asistente').textContent = 
+          `Horario: ${formatTime(asistente.horario_inicio)} - ${formatTime(asistente.horario_fin)}`;
+        
+        // Avatar con inicial del nombre
+        const inicial = asistente.primer_nombre?.charAt(0) || 'A';
+        document.getElementById('asistente-avatar').textContent = inicial;
+      } catch (error) {
+        console.error('Error al cargar desde API:', error);
+        alert('Error al cargar los datos del asistente');
+      }
+    }
+  });
+</script>
+<!-- Al final del body, antes del cierre  -->
+<script>
+  document.getElementById('delete-btn').addEventListener('click', function() {
+    // Guardar datos actuales del asistente
+    const asistenteData = {
+      codigo: document.getElementById('codigo-asistente').textContent,
+      nombre: document.getElementById('nombre-asistente').textContent,
+      telefono: document.getElementById('telefono-asistente').textContent,
+      correo: document.getElementById('correo-asistente').textContent,
+      horario: document.getElementById('horario-asistente').textContent
+    };
+    sessionStorage.setItem('asistenteToDelete', JSON.stringify(asistenteData));
+    
+    // Redirigir directamente
+    window.location.href = 'eliminar_asistentes.html';
+  });
+</script>
+<script src="../Modules/Menu.js"></script>
+</body>
+</html>

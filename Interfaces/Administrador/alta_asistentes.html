@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="../Modules/Menu.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="alta_asistentes.css" />
+</head>
+
+<body>
+    <div class="app">
+
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Administracion</h7>
+          <hr class="linea_menu">
+          <a href="./ver_medicos_consultorios.html">Administrar Sucursales</a>
+          <a href="./ver_doctores.html">Administrar Doctor</a>
+          <a href="./ver_asistentes.html">Administrar Asistente</a>
+          <h7>Altas en sistema</h7>
+          <hr class="linea_menu">
+          <a href="./alta_sucursales.html">Alta Sucursales</a>
+          <a href="./alta_consultorios.html">Alta Consultorios</a>
+          <a href="./alta_doctores.html">Alta Doctor</a>
+          <a href="./alta_asistentes.html">Alta Asistente</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+        <header class="header">
+            <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+            <h1> Alta Asistentes</h1>
+        </header>
+
+        <form id="form-asistente">
+    <h7>Datos personales</h7>
+    <hr class="linea_seccion">
+    <div class="input-group"><i class="fa fa-user"></i><input id="nombre" type="text" required placeholder="Nombre"></div>
+    <div class="input-group"><i class="fa fa-user"></i><input id="apellidos" type="text" required placeholder="Apellidos"></div>
+    <div class="input-group"><i class="fa-solid fa-venus-mars"></i><input id="sexo" type="text" required placeholder="H/M"></div>
+    <div class="input-group"><i class="fa-solid fa-id-card"></i><input id="documento" type="text" required placeholder="Documento de identidad"></div>
+    <div class="input-group"><i class="fa-regular fa-calendar"></i><input id="fecha_nacimiento" type="date" required></div>
+
+    <h7>Dirección</h7>
+    <hr class="linea_seccion">
+    <div class="input-group"><i class="fa-solid fa-house"></i><input id="calle" type="text" required placeholder="Calle"></div>
+    <div class="input-group"><i class="fa-solid fa-house"></i><input id="colonia" type="text" required placeholder="Colonia"></div>
+    <div class="input-group"><i class="fa-solid fa-house"></i><input id="numero" type="text" required placeholder="Número ext."></div>
+
+    <h7>Datos del Asistente</h7>
+    <hr class="linea_seccion">
+    <h7>Hora entrada</h7>
+    <div class="input-group"><i class="fa-regular fa-clock"></i><input id="hora_inicio" type="time" required></div>
+    <h7>Hora salida</h7>
+    <div class="input-group"><i class="fa-regular fa-clock"></i><input id="hora_fin" type="time" required></div>
+
+    <h7>Cuenta</h7>
+    <hr class="linea_seccion">
+    <div class="input-group"><i class="fa fa-envelope"></i><input id="correo" type="email" required placeholder="Correo"></div>
+    <div class="input-group"><i class="fa fa-phone"></i><input id="telefono" type="tel" required placeholder="Teléfono"></div>
+    <div class="input-group"><i class="fa fa-lock"></i><input id="password" type="password" required placeholder="Contraseña"></div>
+    <div class="input-group"><i class="fa fa-lock"></i><input id="confirmPassword" type="password" required placeholder="Confirmar contraseña"></div>
+
+    <div class="checkbox">
+        <input type="checkbox" id="terms" required>
+        <label for="terms">Acepto los <a href="#">Términos y Privacidad</a></label>
+    </div>
+
+    <button type="submit" class="register-btn">Registrar</button>
+</form>
+
+
+        </form>
+    </div>
+
+    <script src="../Modules/Menu.js"></script>
+    <script src="../../BaseDeDatos/alta_asistentes.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="cancelar_cita_paciente.css" />
+  <link rel="stylesheet" href="../Modules/Menu.css">
+  <title>Cancelar cita</title>
+</head>
+<body>
+<div class="app">
+  <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./paciente_agendar.html">Nueva cita</a>
+          <a href="./historial_citas_paciente.html">Historial de citas</a>
+          <h7>Historial Medico</h7>
+          <hr class="linea_menu">
+          <a href="./expediente_paciente.html">Expediente</a>
+          <a href="./receta_paciente.html">Ver Recetas</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+  <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1> Eliminar Cita</h1>
+        </header>
+
+    <section class="cita-info">
+      <!-- En la sección de cita-info -->
+      <div class="card">
+        <div class="card-header">
+          Cita <span id="cita-id"></span> - <span id="cita-horario"></span>
+        </div>
+        <div class="card-body">
+          <p><strong>Fecha:</strong> <span id="cita-fecha"></span></p>
+          <p><strong>Médico:</strong> <span id="cita-medico"></span></p>
+          <p><strong>Consultorio:</strong> <span id="cita-consultorio"></span></p>
+          <p><strong>Sucursal:</strong> <span id="cita-sucursal"></span></p>
+          <p><strong>Estatus:</strong> <span id="cita-estado" class="pendiente"></span></p>
+        </div>
+      </div>
+      <div class="contenedor-alerta">
+          <div class="alerta">
+                  <p><strong>AVISO:</strong><br>
+                    <span class="icon">⚠️</span> Reembolso no aplicable.<br>
+                    El tiempo límite para la cancelación con posibilidad de reembolso ha pasado, al cancelar no se hará devolución del anticipo.
+                  </p>
+                </div>
+              <p class="anticipo">Anticipo recibido: xxx.xx</p>
+      </div>
+      
+    </section>
+    <div>
+      <div class="cancelación">
+        <form class="form-cancelacion">
+          <h3>Datos sobre cancelación</h3>
+          <p class="form-instruccion">Llena los siguientes datos para cancelar la cita</p>
+          <input type="text" placeholder="Nombre" required />
+          <input type="password" placeholder="Contraseña" required />
+          <textarea placeholder="Razones de cancelación" required></textarea>
+          <label class="terminos">
+            <input type="checkbox" required />
+            Acepto Términos y Condiciones
+          </label>
+          <button type="submit" class="btn-cancelar">Cancelar cita</button>
+          <button type="button" class="btn-regresar">Regresar</button>
+        </form>
+      </div>
+    
+    </div>
+    
+  </div>
+  <script src="../Modules/Menu.js"></script>
+  <script src="cancelar_cita_paciente.js"></script>
+</body>
+</html>

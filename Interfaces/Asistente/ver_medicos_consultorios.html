@@ -1,0 +1,103 @@
+<!-- ver_medicos_consultorios.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctores por Consultorio</title>
+  <link rel="stylesheet" href="ver_doctores.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <a href="./paciente_citas.html">Citas</a>
+          <a href="./ver_pacientes.html">Pacientes</a>
+          <a href="./receta_paciente.html">Recetas</a>
+          <a href="./ver_medicos_consultorios.html">Consultorios</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+      <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+      <h1>Doctores por Consultorio</h1>
+    </header>
+
+    <main class="main">
+      <h2>Distribución por Sucursal</h2>
+      <div id="medicos-consultorios-container"></div>
+    </main>
+  </div>
+
+  <script>
+  function formatTime(timeString) {
+    if (!timeString) return '--:--';
+    const date = new Date(timeString);
+    return date.toLocaleTimeString('es-MX', {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    const container = document.getElementById('medicos-consultorios-container');
+
+    try {
+      const userData = JSON.parse(sessionStorage.getItem('userData'));
+      const codigoMedico = userData?.codigo_persona;
+
+      if (!codigoMedico) {
+        throw new Error('No se encontró el código del médico');
+      }
+
+      const response = await fetch(`http://localhost:3000/api/medicos-consultorios/${codigoMedico}`);
+      const data = await response.json();
+
+      if (Object.keys(data).length === 0) {
+        container.innerHTML = '<p>No tienes consultorios asignados.</p>';
+        return;
+      }
+
+      for (const [sucursal, registros] of Object.entries(data)) {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const header = document.createElement('div');
+        header.className = 'card-header';
+        header.textContent = sucursal;
+        card.appendChild(header);
+
+        registros.forEach(reg => {
+          const body = document.createElement('div');
+          body.className = 'card-body';
+          body.innerHTML = `
+            <div class="avatar">${reg.medico.charAt(0)}</div>
+            <div class="info">
+              <strong>${reg.medico}</strong>
+              <p><b>Consultorio:</b> ${reg.consultorio}</p>
+              <p><b>Horario:</b> ${formatTime(reg.hora_inicio)} - ${formatTime(reg.hora_fin)}</p>
+            </div>
+          `;
+          card.appendChild(body);
+        });
+
+        container.appendChild(card);
+      }
+    } catch (err) {
+      console.error('Error al cargar consultorios del médico:', err);
+      container.innerHTML = '<p style="color:red">Error al cargar los consultorios</p>';
+    }
+  });
+</script>
+
+  <script src="../Modules/Menu.js"></script>
+</body>
+</html>

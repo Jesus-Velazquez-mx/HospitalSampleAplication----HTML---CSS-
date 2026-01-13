@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrar Citas</title>
+  <link rel="stylesheet" href="paciente_citas.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+   <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <a href="./paciente_citas.html">Citas</a>
+          <a href="./ver_pacientes.html">Pacientes</a>
+          <a href="./receta_paciente.html">Recetas</a>
+          <a href="./ver_medicos_consultorios.html">Consultorios</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1> Administración de Citas</h1>
+    </header>
+
+    <main class="main">
+      <h2>Citas Programadas</h2>
+
+      <!-- Plantilla para las citas -->
+      <div class="cita-card template" style="display: none;">
+        <div class="cita-header">
+          Cita <span class="codigo-cita"></span>
+          <span class="estado"></span>
+        </div>
+        <div class="cita-body">
+          <div class="cita-info">
+            <p><strong>Fecha:</strong> <span class="fecha"></span></p>
+            <p><strong>Hora:</strong> <span class="hora"></span></p>
+            <p><strong>Paciente:</strong> <span class="paciente"></span></p>
+            <p><strong>Médico:</strong> <span class="medico"></span></p>
+            <p><strong>Consultorio:</strong> <span class="consultorio"></span></p>
+            <p><strong>Sucursal:</strong> <span class="sucursal"></span></p>
+          </div>
+          <div class="cita-actions">
+            <button class="btn-editar">Ver</button>
+            <button class="btn-cancelar">Cancelar</button>
+            <button class="btn-consultar">Consultar</button>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor para las citas -->
+      <div id="citas-container">
+        <!-- Las citas se cargarán aquí dinámicamente -->
+      </div>
+
+    </main>
+  </div>
+  
+  <script src="../Modules/Menu.js"></script>
+  <script src="cargarCitas.js"></script>
+
+</body>
+</html>

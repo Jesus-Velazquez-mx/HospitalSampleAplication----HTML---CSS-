@@ -1,0 +1,170 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.app {
+  position: relative;
+  background: white;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 60px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+  position: relative;
+}
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-dots span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.menu-dots-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menu-dots-btn span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.header-text p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+main {
+  padding: 1rem;
+}
+
+.card {
+  background-color: #e5ecf3;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.card-header {
+  background-color: #2a4e5c;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+}
+
+.sin-pago {
+  color: #cc0000;
+}
+
+.alerta {
+  background-color: #ffe5e5;
+  border: 1px solid #cc0000;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  color: #222;
+}
+
+.formulario h3 {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.formulario p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.formulario input {
+  width: 93%;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+/* Se maneja el checkbox de términos y condiciones */
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.terms input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4CAF50; /* Cambia el color del check */
+  cursor: pointer;
+}
+
+.terms label {
+  cursor: pointer;
+  user-select: none;
+}
+/* Termina el manejo de checkbox */
+
+.btn {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  margin: 0.5rem 0;
+  cursor: pointer;
+  color: white;
+}
+
+.confirmar {
+  background-color: #27ae60;
+}
+
+.gris {
+  background-color: #ccc;
+  color: #333;
+}

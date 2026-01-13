@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles de la Cita</title>
+  <link rel="stylesheet" href="../Modules/Menu.css">
+  <link rel="stylesheet" href="detalle.css">
+  
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./pacientes_agendar.html">Agendar Cita</a>
+          <h7>Pacientes</h7>
+          <hr class="linea_menu">
+          <a href="./ver_pacientes.html">Listado de Pacientes</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1> Detalle de la cita</h1>
+        </header>
+
+    <main>
+      <h2 class="titulo-cita">Cita ###</h2>
+
+      <div class="detalle-card">
+        <div class="card-header">
+          <span>Cita ###</span>
+          <button id="btnEliminar" class="options-btn" aria-label="Eliminar">🗑️</button>
+        </div>
+
+        <div class="card-body">
+          <div class="paciente-info">
+            <img src="paciente.jpg" alt="Paciente" class="paciente-img">
+            <div class="datos-paciente">
+              <strong>Nombre del paciente</strong><br>
+              Sexo: F &nbsp;&nbsp; Edad: xx<br>
+              xxxxxxxxxxxxxxxxxxxxxxx
+            </div>
+          </div>
+
+          <p>Doctor: xxxx</p>
+          <p>Fecha: xxxx</p>
+          <p>Horario: xxxx</p>
+          <p>Sucursal: xxxx</p>
+          <p>Teléfono: xxx-xxx-xxxx</p>
+          <p><strong>Detalles de cita:</strong> <span class="sin-pago">Sin pago</span></p>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+  <!-- Modal para cancelar cita -->
+<div class="modal" id="modalCancelar">
+  <div class="modal-content">
+    <h3>¿Desea cancelar la cita?</h3>
+    <p>Al Aceptar usted afirma que quiere cancelar la cita actual, si esto no es lo que desea presione Cancelar</p>
+    <div class="modal-buttons">
+      <button class="btn btn-cancelar" id="btnCancelar">Cancelar</button>
+      <button class="btn btn-aceptar" id="btnAceptar">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Script para controlar el modal -->
+ <script src="../Modules/Menu.js"></script>
+<script src="detalles_de_la_cita.js"></script>
+
+</body>
+</html>

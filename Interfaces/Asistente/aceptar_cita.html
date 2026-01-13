@@ -1,0 +1,75 @@
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aceptar Cita</title>
+  <link rel="stylesheet" href="aceptar_cita.css" />
+  <link rel="stylesheet" href="../Modules/Menu.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./mostrar_citas.html">Citas Agendadas</a>
+          <a href="../Paciente/asistente_agendar.html">Agendar Cita</a>
+          <h7>Pacientes</h7>
+          <hr class="linea_menu">
+          <a href="./ver_pacientes.html">Listado de Pacientes</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+      <header class="header">
+          <input type="button" id="menu-toggle" value="" class="menu-dots-btn">
+          <h1> Aceptar cita</h1>
+      </header>
+
+    <main>
+      <h2>Cita ###</h2>
+
+      <div class="card">
+        <div class="card-header">16:00 - 17:00</div>
+        <div class="card-body">
+          <p><strong>Zona:</strong> Sucursal</p>
+          <p><strong>Doctor:</strong> Nombre del Doctor</p>
+          <p><strong>Datos de la consulta:</strong> xxxxxxxxxxxxxx</p>
+          <p><strong>Estatus:</strong> <span class="sin-pago">Sin pago</span></p>
+        </div>
+      </div>
+
+      <div class="alerta">
+        <strong>AVISO:</strong><br/>
+        Atención, paso importante.<br/>
+        La cita debe ser aceptada únicamente si el asistente validó el pago con el soporte, se deberá corroborar esta información.
+      </div>
+
+      <p><strong>Anticipo recibido:</strong> xxx.xx</p>
+
+      <section class="formulario">
+        <h3>Datos de confirmación</h3>
+        <p>Llena los siguientes datos para confirmar la cita</p>
+
+        <input type="text" placeholder="Nombre"/>
+        <input type="password" placeholder="Contraseña"/>
+        <input type="text" placeholder="Datos de la transferencia"/>
+
+        <div class="terms">
+        <input type="checkbox" id="terms" />
+        <label for="terms">Acepto Términos y Condiciones</label>
+      </div>
+
+        <button class="btn confirmar">Confirmar cita</button>
+        <button class="btn gris">Regresar</button>
+      </section>
+    </main>
+  </div>
+  <script src="../Modules/Menu.js"></script>
+</body>
+</html>

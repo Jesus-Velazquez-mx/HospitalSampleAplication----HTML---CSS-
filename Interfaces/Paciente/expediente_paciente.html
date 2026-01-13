@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expediente Médico</title>
+  <link rel="stylesheet" href="expediente_paciente.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./paciente_agendar.html">Nueva cita</a>
+          <a href="./historial_citas_paciente.html">Historial de citas</a>
+          <h7>Historial Medico</h7>
+          <hr class="linea_menu">
+          <a href="./expediente_paciente.html">Expediente</a>
+          <a href="./receta_paciente.html">Ver Recetas</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1>Mi Expediente Médico</h1>
+    </header>
+
+    <main class="main">
+      <h2>Historial Médico</h2>
+
+      <!-- Plantilla para los registros del expediente -->
+      <div class="expediente-card template" style="display: none;">
+        <div class="expediente-header">
+          Registro <span class="codigo-historial"></span>
+          <span class="fecha-actualizacion"></span>
+        </div>
+        <div class="expediente-body">
+          <div class="expediente-info">
+            <p><strong>Fecha de creación:</strong> <span class="fecha-creacion"></span></p>
+            <p><strong>Última actualización:</strong> <span class="fecha-modificacion"></span></p>
+          </div>
+          <div class="expediente-actions">
+            <button class="btn-ver">Ver detalles</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor para los registros del expediente -->
+      <div id="expediente-container">
+        <!-- Los registros se cargarán aquí dinámicamente -->
+      </div>
+    </main>
+  </div>
+  
+  <script src="../Modules/Menu.js"></script>
+  <script src="cargarExpediente.js"></script>
+</body>
+</html>

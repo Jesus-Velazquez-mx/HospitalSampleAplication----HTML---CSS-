@@ -1,0 +1,201 @@
+ /* Reset básico */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+}
+
+.app {
+  position: relative;
+  background: white;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding-bottom: 20px;
+}
+
+.header {
+  background-color: #5f8591;
+  color: white;
+  padding: 60px 30px 40px;
+  border-radius: 0px 0px 40px 40px;
+  position: relative;
+}
+
+.menu-dots-btn {
+  background: none;
+  color: white;
+  font-size: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-dots span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.menu-dots-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-bottom: 10px;
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menu-dots-btn span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.card {
+  background-color: #d8e3e3;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  margin-top: 35px;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #0d2d3e;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-body {
+  padding: 0.8rem 1rem;
+  font-size: 0.95rem;
+}
+
+.pendiente {
+  color: green;
+  font-weight: bold;
+}
+
+.alerta {
+  background-color: #fddede;
+  color: #a94442;
+  padding:1rem;
+  border-left: 4px solid red;
+  border-radius: 6px;
+}
+
+.alerta .icon {
+  font-size: 1.2rem;
+}
+
+.anticipo {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.contenedor-alerta{
+  padding: 1rem 1rem;
+}
+
+.cancelación{
+  padding: 1rem 1rem;
+}
+
+.form-cancelacion {
+  background-color: #f8f8f8;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.form-cancelacion h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-instruccion {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.form-cancelacion input,
+.form-cancelacion textarea {
+  width: 94%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.terminos {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.terminos input {
+  margin-right: 0.5rem;
+}
+
+.btn-cancelar {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.btn-regresar {
+  background-color: #ccc;
+  border: none;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 0 16px;
+  margin-bottom: 16px;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.checkbox-container input[type="checkbox"] {
+  flex-shrink: 0;
+}
+

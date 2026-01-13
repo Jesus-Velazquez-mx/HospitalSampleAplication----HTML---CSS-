@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administra Citas</title>
+  <link rel="stylesheet" href="../Modules/Menu.css">
+  <link rel="stylesheet" href="mostrar_citas.css">
+  
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./pacientes_agendar.html">Agendar Cita</a>
+          <h7>Pacientes</h7>
+          <hr class="linea_menu">
+          <a href="./ver_pacientes.html">Listado de Pacientes</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1> Administra tus Citas</h1>
+        </header>
+
+    <main>
+      <section>
+        <h2>Zona Norte</h2>
+
+        <div class="card">
+          <div class="card-header">
+            <span>12:00 - 13:00</span>
+            <button class="options-btn" aria-label="Opciones">•••</button>
+          </div>
+          <div class="card-body">
+            <p><strong>Paciente:</strong> Nombre del paciente</p>
+            <p><strong>Datos de la consulta:</strong> xxxxxxxxxxxxxx</p>
+            <p><strong>Estatus:</strong> <span class="pendiente">Pendiente</span></p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <span>16:00 - 17:00</span>
+            <button class="options-btn" aria-label="Opciones">•••</button>
+          </div>
+          <div class="card-body">
+            <p><strong>Paciente:</strong> Nombre del paciente</p>
+            <p><strong>Datos de la consulta:</strong> xxxxxxxxxxxxxx</p>
+            <p><strong>Estatus:</strong> <span class="sin-pago">Sin pago</span></p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Zona Sur</h2>
+
+        <div class="card">
+          <div class="card-header">
+            <span>11:00 - 12:00</span>
+            <button class="options-btn" aria-label="Opciones">•••</button>
+          </div>
+          <div class="card-body">
+            <p><strong>Paciente:</strong> Nombre del paciente</p>
+            <p><strong>Datos de la consulta:</strong> xxxxxxxxxxxxxx</p>
+            <p><strong>Estatus:</strong> <span class="pendiente">Pendiente</span></p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../Modules/Menu.js"></script>
+  <script src="./mostrar_citas.js"></script>
+</body>
+</html>

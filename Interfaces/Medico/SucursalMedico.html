@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medico Sucursales</title>
+  <!-- Esta relacionado al css de la interfaz de administrador por su CSS -->
+  <link rel="stylesheet" href="/Proyecto_2025/Interfaces/Administrador/AdministrarSucursales.css" />
+  <link rel="stylesheet" href="../Modules/Menu.css" />
+</head>
+<body>
+  <div class="app">
+  <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <a href="./paciente_citas.html">Citas</a>
+          <a href="./ver_pacientes.html">Pacientes</a>
+          <a href="./receta_paciente.html">Recetas</a>
+          <a href="./ver_medicos_consultorios.html">Consultorios</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+        <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1>Sucursales</h1>
+        </header>
+
+        <article id="Zona">
+        <label for="zona" class="bold">Selecciona una zona:</label>
+        <br><br>
+        <select name="zona" id="zona">
+            <option value="zona Norte">Zona Norte</option>
+            <option value="zona Sur">Zona Sur</option>
+        </select>
+        </article>
+
+        <!-- Calendario Interactivo -->
+        <div class="calendar-container">
+        <div class="calendar-controls">
+            <select id="month-select"></select>
+            <select id="year-select"></select>
+        </div>
+
+        <input type="text" id="selected-date-input" readonly placeholder="Selecciona una fecha" />
+
+        <div class="calendar">
+            <div class="day-names">
+            <div>Dom</div><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div>
+            </div>
+            <div id="calendar-days" class="days-grid"></div>
+        </div>
+        </div>
+        <br> 
+        <div id="verderojo">
+            <span>🟢 Fecha disponible</span>
+            <span>🔴 Fecha ocupada</span>
+        </div>   
+  </div>
+<!-- Esta relacionado al script de la interfaz de administrador por su script -->
+  <script src="/Proyecto_2025/Interfaces/Administrador/Calendarscript.js"></script>
+  <script src="../Modules/Menu.js"></script>
+</body>
+</html>

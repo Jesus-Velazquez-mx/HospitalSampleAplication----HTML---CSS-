@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Recetas Médicas</title>
+  <link rel="stylesheet" href="expediente_paciente.css">
+  <link rel="stylesheet" href="../Modules/Menu.css">
+</head>
+<body>
+  <div class="app">
+    <!-- Menú lateral -->
+    <div id="sidebar" class="sidebar">
+      <div class="sidebar-content">
+        <div class="menu-options">
+          <h7>Citas</h7>
+          <hr class="linea_menu">
+          <a href="./paciente_citas.html">Citas Agendadas</a>
+          <a href="./paciente_agendar.html">Nueva cita</a>
+          <a href="./historial_citas_paciente.html">Historial de citas</a>
+          <h7>Historial Medico</h7>
+          <hr class="linea_menu">
+          <a href="./expediente_paciente.html">Expediente</a>
+          <a href="./receta_paciente.html">Ver Recetas</a>
+        </div>
+        <div class="logout-container">
+          <button id="logout-btn">⏎ Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="header">
+        <input type="button" id="menu-toggle" value="..." class="menu-dots-btn">
+        <h1>Mis Recetas Médicas</h1>
+    </header>
+
+    <main class="main">
+      <h2>Historial de Recetas</h2>
+
+      <!-- Plantilla para las recetas -->
+      <div class="expediente-card template" style="display: none;">
+        <div class="expediente-header">
+          Receta <span class="codigo-receta"></span>
+          <span class="fecha-receta"></span>
+        </div>
+        <div class="expediente-body">
+          <div class="expediente-info">
+            <p><strong>Médico:</strong> <span class="nombre-medico"></span></p>
+            <p><strong>Fecha de emisión:</strong> <span class="fecha-emision"></span></p>
+            <p><strong>Consulta relacionada:</strong> <span class="consulta-relacionada"></span></p>
+          </div>
+          <div class="expediente-actions">
+            <button class="btn-ver">Ver receta</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor para las recetas -->
+      <div id="recetas-container">
+        <!-- Las recetas se cargarán aquí dinámicamente -->
+      </div>
+    </main>
+  </div>
+  
+  <script src="../Modules/Menu.js"></script>
+  <script src="cargarRecetas.js"></script>
+</body>
+</html>
